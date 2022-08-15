@@ -12,9 +12,9 @@ const PizzaList = () => {
       <p>
         Welcome <b>{user.name}</b>!
       </p>
-      <h3>
+      <p>
         Amount of pizzas: <b>{allPizzas.length}</b>
-      </h3>
+      </p>
       <hr />
       {allPizzas.map((pizza, index) => {
         return (
