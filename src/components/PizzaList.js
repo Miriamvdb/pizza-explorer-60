@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectAllPizzas } from "../pizzas/selectors";
-import { selectUser } from "../user/selectors";
-import { toggleFav } from "../user/slice";
+import { selectAllPizzas } from "../store/pizzas/selectors";
+import { selectUser } from "../store/user/selectors";
+import { toggleFav } from "../store/user/slice";
 import { TiHeart, TiHeartOutline } from "react-icons/ti";
 import "./PizzaList.scss";
 

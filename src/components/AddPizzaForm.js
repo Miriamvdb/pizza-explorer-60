@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNewPizza } from "../pizzas/slice";
+import { addNewPizza } from "../store/pizzas/slice";
 
 const AddPizzaForm = () => {
   const [name, setName] = useState("");
@@ -44,6 +44,7 @@ const AddPizzaForm = () => {
           <button type="submit">Add new pizza!</button>
         </form>
       </div>
+      <br />
     </div>
   );
 };
