@@ -3,43 +3,59 @@ import { selectAllPizzas } from "../pizzas/selectors";
 import { selectUser } from "../user/selectors";
 import { toggleFav } from "../user/slice";
 import { TiHeart, TiHeartOutline } from "react-icons/ti";
+import "./PizzaList.scss";
 
 const PizzaList = () => {
   const user = useSelector(selectUser);
   const allPizzas = useSelector(selectAllPizzas);
-  const dispatch = useDispatch(); // 3.
+  const dispatch = useDispatch();
 
   return (
-    <div className="container-pizzalist">
-      <h1>Pizza Explorer</h1>
-      <p>
+    <div className="pizza-list">
+      <h1 style={{ fontSize: "50px" }}>Pizza Explorer</h1>
+      <p style={{ fontSize: "15px" }}>
         Welcome <b>{user.name}</b>!
       </p>
-      <p>
+      <p style={{ fontSize: "15px" }}>
         Amount of pizzas: <b>{allPizzas.length}</b>
       </p>
-      <hr />
-      {allPizzas.map((pizza, index) => {
-        return (
-          <div key={index}>
-            {/* 4. Dispatch it from the heart button, we'll pass in the id of the */}
-            {/* current pizza as parameter so we can add it as a favorite next! */}
-            <button onClick={() => dispatch(toggleFav(pizza.id))}>
-              {user.favorites.includes(pizza.id) ? (
-                <TiHeart />
-              ) : (
-                <TiHeartOutline />
-              )}
-            </button>
-            <h3>{pizza.name}</h3>
-            <img src={pizza.image} alt={pizza.name} />
-            <p>{pizza.description}</p>
-            <p>
-              <b>Bought</b> {pizza.bought}
-            </p>
-          </div>
-        );
-      })}
+      <br />
+      <div className="pizzas">
+        {allPizzas.map((pizza, index) => {
+          return (
+            <div key={index}>
+              <div className="title-button">
+                <h3>{pizza.name}</h3>
+                <button
+                  className={`fav-toggle ${
+                    user.favorites.includes(pizza.id) ? "fav" : ""
+                  }`}
+                  onClick={() => dispatch(toggleFav(pizza.id))}
+                >
+                  {user.favorites.includes(pizza.id) ? (
+                    <TiHeart style={{ fontSize: "15px", color: "tomato" }} />
+                  ) : (
+                    <TiHeartOutline
+                      style={{ fontSize: "15px", color: "tomato" }}
+                    />
+                  )}
+                </button>
+              </div>
+              <div
+                className="pizza"
+                style={{ backgroundImage: `url(${pizza.image})` }}
+              >
+                <div className="overlay">
+                  <p>{pizza.description}</p>
+                  <p>
+                    <b>Bought</b> {pizza.bought}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
