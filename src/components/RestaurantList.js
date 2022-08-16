@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { selectAllRestos } from "../store/restaurants/selectors";
+import { selectRestoWithPizza } from "../store/selectors";
 
 const RestaurantList = () => {
-  const allRestos = useSelector(selectAllRestos);
+  const allRestos = useSelector(selectRestoWithPizza);
   console.log(allRestos);
 
   return (
@@ -10,10 +10,15 @@ const RestaurantList = () => {
       <hr />
       <h2>Restaurants</h2>
       <div>
-        {allRestos.map((resto, index) => {
+        {allRestos.map((resto) => {
           return (
-            <div key={index}>
+            <div key={resto.id}>
               <h3>{resto.name}</h3>
+              <ul>
+                {resto.pizzas.map((pizza) => {
+                  return <li key={pizza.id}>{pizza.name}</li>;
+                })}
+              </ul>
             </div>
           );
         })}
