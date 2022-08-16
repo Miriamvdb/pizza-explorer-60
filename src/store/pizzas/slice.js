@@ -36,9 +36,7 @@ export const pizzaSlice = createSlice({
   name: "pizzas",
   initialState,
   reducers: {
-    // 1. define a new case called "addNewPizza" and export it.
     addNewPizza: (state, action) => {
-      // 4. Write logic to add the new pizza to "allPizzas".
       const { name, description } = action.payload;
       const newPizza = {
         id: Math.floor(Math.random() * 1000),

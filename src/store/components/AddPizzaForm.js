@@ -11,9 +11,6 @@ const AddPizzaForm = () => {
     event.preventDefault();
     console.log("Add a new pizza: ", name, description);
 
-    // TODO:
-    // 2. dispatch an action with the new action creator, create an object with
-    // name and description and pass it to the action as a parameter (below)
     const newPizza = {
       name,
       description,
@@ -21,7 +18,6 @@ const AddPizzaForm = () => {
 
     dispatch(addNewPizza(newPizza));
 
-    // 3. clear the input fields
     setName("");
     setDescription("");
   };
